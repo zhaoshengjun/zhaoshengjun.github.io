@@ -98,7 +98,7 @@ a {
 
 a:active,
 a:hover {
-  
+  padding-bottom: 1rem;
   box-shadow: inset 0 -2px 0 #3f51b5;
       -webkit-transition: 150ms;
     transition: 150ms;
@@ -470,7 +470,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     font-size: 100%;
     line-height: 1.2;
-    font-family: "Raleway", "Lato", "Helvetica Neue", "Arial", serif;
+    font-family: "Suez One", "Lato", "Helvetica Neue", "Arial", serif;
 }
 
 h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + * {
@@ -915,7 +915,7 @@ pre .deletion {
     text-align: center;
     margin-bottom: 2rem;
     font-size: 1.4rem;
-    font-family: "Raleway", arial, sans-serif;
+    font-family: "Suze One", arial, sans-serif;
     letter-spacing: .1em;
 }
 
@@ -944,7 +944,7 @@ pre .deletion {
 .site-branding a {
     display: inline-table;
     color: #fff !important;
-    font-family:'raleway';
+    font-family:'Suez One';
     font-weight: 600;
     font-size: 4rem;
     background-color: #F03838;
@@ -982,7 +982,7 @@ pre .deletion {
     color: #F03838;
     font-size: 2rem;
     line-height: 2rem;
-    padding: 0 1rem;
+    padding: 1rem;
 }
 .site-footer {
     position: relative;
@@ -1063,15 +1063,10 @@ img.avatar {
     color: #212121;
 }
 
-.archive-title a:hover span {
-    box-shadow: inset 0 -2px 0 rgba(240, 56, 56, 0.4);
-}
-
 .archive-title a span {
     padding-bottom: 3px;
-    -webkit-transition: 150ms;
-    transition: 150ms;
-    box-shadow: inset 0 -2px 0 rgba(240, 56, 56, 0);
+    font-family: "Suez one";
+    font-size: 2.4rem;        
 }
 .article {
     position: relative;
@@ -1098,8 +1093,7 @@ img.avatar {
     padding: 0 2rem;
 }
 
-.article-title a {
-    display: block;
+.article-title a {    
     color: #212121;
 }
 
@@ -1114,7 +1108,7 @@ img.avatar {
 .article-title a span {
     font-family: "Suez One";
     font-size: 3rem;
-    padding-bottom: 3px;
+    padding-bottom: 1rem;
 }
 
 .article-top-meta {
