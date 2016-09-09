@@ -1,0 +1,403 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Learn, Make, Share, Live | Learn new things, Make things better, Share things usefule, Live well</title>
+  <meta name="author" content="Sam Zhao">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  
+  <meta property="og:site_name" content="Learn, Make, Share, Live"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+  <link href='https://fonts.googleapis.com/css?family=Raleway:600,700|Lato:400,400italic' rel='stylesheet' type='text/css'>
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Learn, Make, Share, Live" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">Learn, Make, Share, Live</a>
+  </h1>
+  <p class="site-description">Learn new things, Make things better, Share things usefule, Live well</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        
+  <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/09/09/rethinkdb01/"><span>Running Horizon on Windows</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/09/09/rethinkdb01/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-09-08T23:42:00.000Z">
+          2016-09-09
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><a href="https://horizon.io" target="_blank" rel="external">Horizon</a> is a realtime JavaScript backend, which is similiar to Firebase. What interested to me is the powerful query language it provides. If you use Firebase before, you will know Firebase is cool as realtime database, but limited by the query ability. So I think it’s worth trying to use Horizon.</p>
+<p>I followed the step on the website:</p>
+<ol>
+<li>install RethinkDB by downloading the RethinkDB package</li>
+<li>install horizon by running <code>npm i -g horizon</code></li>
+<li>create an app by running <code>hz init test_app</code></li>
+<li>start the app by running <code>hz serve --dev</code></li>
+</ol>
+<p>Here’s the problem I got:<br><img src="/images/horizon-error.png" alt="horizon-error"></p>
+<p>The problem is because Horizon will start RethinkDB by default and in this case it doesn’t know how to start RethinkDB. Because RethinkDB installer doesn’t add the folder path to the environment variable. I tried to manually add this but it was not working. Then I checked the document of Horizon, and found out that Horizon can be configured to Connect to the server, instead of Start a server.</p>
+<p>So I changed the <code>config.toml</code> file inside <code>.hz</code> folder, uncommentted the following line. Then I manually start the RethinkDB server and run <code>hz serve --dev</code>. It worked!<br><img src="/images/config-toml.png" alt="config-toml"></p>
+<p>Hope it helps someone with the same issue when running Horizon.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/Dev/">Dev</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/Horizon/">Horizon</a>, <a href="/tags/RethinkDB/">RethinkDB</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/05/16/ng-directive/"><span>Difference/Connections between Component and Directives</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/05/16/ng-directive/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-05-16T12:42:00.000Z">
+          2016-05-16
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>Angular 2 introduced <code>@Component</code> and also <code>@Directive</code> for meta data using TypeScript compatibility. Those who knows Angular 1 probably find these are familiar with <code>Directives</code> in Angular 1. But are they the same? Is there any difference? </p>
+<p>I was confusing too, until I heard one simple yet elegant explanation:</p>
+<blockquote>
+<p>In Angular 1, <code>directives</code> has <strong>E</strong> type and <strong>A</strong> type. <code>@Component</code> in Angular 2 is like <strong>E</strong> type directive in Angular 1 while <code>@Directive</code> is like <strong>A</strong> type directive.</p>
+</blockquote>
+<p>Hope this will clear your head:)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/Dev/">Dev</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/Angular-2/">Angular 2</a>, <a href="/tags/Component/">Component</a>, <a href="/tags/Directive/">Directive</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/05/09/ng-serve-error/"><span>Issue With Broccoli Running Without ADMIN Authorization</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/05/09/ng-serve-error/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-05-09T04:42:00.000Z">
+          2016-05-09
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>I was running Angular 2 using company computer ( God bless no one from my company see this). And I was starting my app using <code>ng serve</code>, but it didn’t work. Instead it threw me an error regarding the Broccoli cannot merge trees.</p>
+<p><img src="/images/ng-serve-error.png" alt="ng serve error"></p>
+<p>I did some digging but it didn’t go anywhere. Then I noticed that the error message saying “running as administrator increases performance significantly.” I just tried to start command line as admin and run the <code>ng serve</code> again. Wha-la, the error message disappeared. My app is back online running again.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/Dev/">Dev</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/Angular-2/">Angular 2</a>, <a href="/tags/Broccoli/">Broccoli</a>, <a href="/tags/Angular-Cli/">Angular Cli</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/05/08/broccoli-error/"><span>Fix Broccoli Error in Angular 2</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/05/08/broccoli-error/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-05-08T11:42:00.000Z">
+          2016-05-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>I used <code>angular-cli</code> create an Angular 2 app, use the default settings. Then I used <code>ng serve</code> command to start the server and made some changes. I must say the process is much better than before, which I has to change the <code>package.json</code> and set up a build tool, e.g. <code>gulp</code> or <code>webpack</code>, specially to enable live-reloading. Now <code>angular-cli</code> has all done that for me. Really sweet!</p>
+<p>Then I left my desktop and stopped the build task. After I returned back and started to run <code>ng serve</code> again, I got an error.<br><img src="/images/cli-error.png" alt="broccoli-error"></p>
+<p>The fix for this error is quite simple: change the generated <code>spec.ts</code> file. The reason I think is Broccoli is run the test spec files before it compile the file and feed them to system.js so that Angular can load them onto the webpage. But I was not using a TDD approach so the test file were not match with the app file. So Broccoli was failling.</p>
+<p>It looks like Angular is promoting TDD approach! </p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/Dev/">Dev</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/Angular-2/">Angular 2</a>, <a href="/tags/Broccoli/">Broccoli</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+  <article class="post article">
+
+  
+  
+    <h3 class="article-title"><a href="/2016/05/08/http-error/"><span>ng2 error - No provider for Http</span></a></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/05/08/http-error/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-05-08T01:06:00.000Z">
+          2016-05-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>This error is caused by, as you can guess, no Http provider in your ts/js file.</p>
+<p>Here’s a screenshot of my error message.<br><img src="/images/http-error.png" alt="http provider error"></p>
+<p>How to fix this? By adding the http provider of course. It’s two lines of code.</p>
+<ol>
+<li><code>import { HTTP_PROVIDERS } from &#39;@angular/http&#39;;</code></li>
+<li>add <code>HTTP_PROVIDERS</code> to your provider list.</li>
+</ol>
+<p><img src="/images/fix-http.png" alt="use http provider"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/Dev/">Dev</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/Angular-2/">Angular 2</a>, <a href="/tags/HTTP/">HTTP</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+
+
+
+<nav class="pagination">
+  
+  
+  <a href="/page/2/" class="pagination-next">Next</a>
+  
+</nav>
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo">
+<div class="divider"></div>
+  <div class="bio">
+    <div class="avatar">
+      <img src="/images/avatar.png" alt="Sam Zhao" class="avatar">
+    </div>
+    <div class="author">
+      <p>Written by <b><i>
+      Sam Zhao </i></b></p>
+      <p>Who lives and works in Brisbane QLD Australia, building useful things(hopefully).</p> 
+      <p>You can follow him on <a href="https://twitter.com/samzhaocn"> Twitter</a> or drop him a <a href="mailto:zhao.shengjun@gmail.com?Subject=Hi">email</a> and say "Hi".</p>   
+    </div>
+  </div>
+  <div>
+
+<div class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a> &copy;
+  2016
+</div></footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-59912650-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </div>
+</div>
+</body>
+</html>

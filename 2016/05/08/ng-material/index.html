@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Fix issue with Angular Material 2 | Learn, Make, Share, Live | Learn new things, Make things better, Share things usefule, Live well</title>
+  <meta name="author" content="Sam Zhao">
+  
+  <meta name="description" content="If you have watched the demo of puppy love on ngconf 2016 and pumped to get hands on angualr material 2, trust me, you are not alone.
+If you try to us">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Fix issue with Angular Material 2"/>
+  <meta property="og:site_name" content="Learn, Make, Share, Live"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+  <link href='https://fonts.googleapis.com/css?family=Raleway:600,700|Lato:400,400italic' rel='stylesheet' type='text/css'>
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Learn, Make, Share, Live" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">Learn, Make, Share, Live</a>
+  </h1>
+  <p class="site-description">Learn new things, Make things better, Share things usefule, Live well</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>Fix issue with Angular Material 2</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/05/08/ng-material/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-05-07T14:51:00.000Z">
+          2016-05-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>If you have watched the demo of puppy love on ngconf 2016 and pumped to get hands on angualr material 2, trust me, you are <strong>not</strong> alone.</p>
+<p>If you try to use angualr cli to create an app and follow along the demo and find out it doesn’t work, trust me, you are <strong>not</strong> alone(at least I think so).</p>
+<p>If you have the same issue, here’s the how to solve it:</p>
+<ul>
+<li>Change <code>angular-cli-build.js</code> in the root folder by adding a line of <code>&#39;@angular2-material/**/*.js&#39;</code></li>
+</ul>
+<p><img src="/images/cli-build.png" alt="angular-cli-build.js"></p>
+<ul>
+<li>Change <code>sytem-config.ts</code> in the <code>src</code> folder by adding material 2 specific settings (on the top).</li>
+</ul>
+<p><img src="/images/system-config.png" alt="system-config.ts"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/Dev/">Dev</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/Angular-2/">Angular 2</a>, <a href="/tags/Angular-Material-2/">Angular Material 2</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+
+
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo">
+<div class="divider"></div>
+  <div class="bio">
+    <div class="avatar">
+      <img src="/images/avatar.png" alt="Sam Zhao" class="avatar">
+    </div>
+    <div class="author">
+      <p>Written by <b><i>
+      Sam Zhao </i></b></p>
+      <p>Who lives and works in Brisbane QLD Australia, building useful things(hopefully).</p> 
+      <p>You can follow him on <a href="https://twitter.com/samzhaocn"> Twitter</a> or drop him a <a href="mailto:zhao.shengjun@gmail.com?Subject=Hi">email</a> and say "Hi".</p>   
+    </div>
+  </div>
+  <div>
+
+<div class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a> &copy;
+  2016
+</div></footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-59912650-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </div>
+</div>
+</body>
+</html>

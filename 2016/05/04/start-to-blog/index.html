@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Start to Blog | Learn, Make, Share, Live | Learn new things, Make things better, Share things usefule, Live well</title>
+  <meta name="author" content="Sam Zhao">
+  
+  <meta name="description" content="I haven’t writing blogs for years. Last time it landed me a book contract. But as you know, there’s not too much things to share when you in an SAP wo">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Start to Blog"/>
+  <meta property="og:site_name" content="Learn, Make, Share, Live"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+  <link href='https://fonts.googleapis.com/css?family=Raleway:600,700|Lato:400,400italic' rel='stylesheet' type='text/css'>
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Learn, Make, Share, Live" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">Learn, Make, Share, Live</a>
+  </h1>
+  <p class="site-description">Learn new things, Make things better, Share things usefule, Live well</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>Start to Blog</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/05/04/start-to-blog/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-05-03T14:51:00.000Z">
+          2016-05-04
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>I haven’t writing blogs for years. Last time it landed me a <a href="http://item.jd.com/11355145.html" target="_blank" rel="external">book contract</a>. But as you know, there’s not too much things to share when you in an SAP world. </p>
+<p>Things changed, <strong>quickly</strong>.</p>
+<p>Yesterday, I was playing with TypeScript + Webpack + React.js, you know, they are <strong>THE</strong> hottest in JavaScript world. I was frastrated, because the tech stack is so complicated since the JavaScript world are changing so rapidly. Even following along the training tutorials cannot ganrentee that you won’t hit the wall.</p>
+<p>Long story short, I hit the wall because the TS-Loader in Webpack keeps complianing I cannot use JSX (the file format is  actually TSX, but it doesn’t matter). I did the thing I did many times - I googled. And googled. It didn’t end well. There are not so many blogs talking about this, especially for TS-Loader.</p>
+<p>Suddenly, I realized that what TS-loader does is just <strong>transformation</strong> - from TSX to JS. Nothing more. Nothing fancy. Why I have to use this? I can use other tools as long as it does the job. In fact, the editor I use - VsCode - has built-support for TypeScript, because you know, they are all from Micrsoft. </p>
+<p>So I changed my <code>webpack.config.js</code>, removing the TS-Loader. Also I created a task to let VsCode transform TSX to JS. I have some perfectionlism issue, so I also use VsCode settigns to hide the generated <code>.js</code> and <code>.js.map</code> files. Here’s something tricky, in the settings, VsCode reminds me that I can only use a string to config but it’s totally OK to provide an array.</p>
+<p>I happily accept the solution. After that, suddenly I feel the strong urge to share this with the world. Because I know that out there so many people are struggling with starting with the current JS world but it’s to hard. The JS world is not user-friendly in some perspective. </p>
+<p>I simplely just want to make it <strong>less difficult</strong> for people who had the same suffer in today’s tech stack while what they want is just <strong>simply start</strong>.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/Dev/">Dev</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/TypeScript/">TypeScript</a>, <a href="/tags/Webpack/">Webpack</a>, <a href="/tags/React/">React</a>, <a href="/tags/VsCode/">VsCode</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+
+
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo">
+<div class="divider"></div>
+  <div class="bio">
+    <div class="avatar">
+      <img src="/images/avatar.png" alt="Sam Zhao" class="avatar">
+    </div>
+    <div class="author">
+      <p>Written by <b><i>
+      Sam Zhao </i></b></p>
+      <p>Who lives and works in Brisbane QLD Australia, building useful things(hopefully).</p> 
+      <p>You can follow him on <a href="https://twitter.com/samzhaocn"> Twitter</a> or drop him a <a href="mailto:zhao.shengjun@gmail.com?Subject=Hi">email</a> and say "Hi".</p>   
+    </div>
+  </div>
+  <div>
+
+<div class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a> &copy;
+  2016
+</div></footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-59912650-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </div>
+</div>
+</body>
+</html>

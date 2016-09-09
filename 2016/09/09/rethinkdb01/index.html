@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Running Horizon on Windows | Learn, Make, Share, Live | Learn new things, Make things better, Share things usefule, Live well</title>
+  <meta name="author" content="Sam Zhao">
+  
+  <meta name="description" content="Horizon is a realtime JavaScript backend, which is similiar to Firebase. What interested to me is the powerful query language it provides. If you use ">
+  
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Running Horizon on Windows"/>
+  <meta property="og:site_name" content="Learn, Make, Share, Live"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+  <link href='https://fonts.googleapis.com/css?family=Raleway:600,700|Lato:400,400italic' rel='stylesheet' type='text/css'>
+  <link href="/favicon.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Learn, Make, Share, Live" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div id="page" class="site">
+  <div id="primary" class="content-area">
+
+    <header id="header" class="inner"><div class="site-branding">
+  <h1 class="site-title">
+    <a href="/">Learn, Make, Share, Live</a>
+  </h1>
+  <p class="site-description">Learn new things, Make things better, Share things usefule, Live well</p>
+</div>
+<nav id="site-navigation" class="main-navigation" role="navigation">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+</nav></header>
+
+    <article id="content" class="site-content">
+      <main id="main" class="site-main posts-loop" role="main">
+        <article class="post article">
+
+  
+  
+    <h3 class="article-title"><span>Running Horizon on Windows</span></h3>
+  
+
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2016/09/09/rethinkdb01/" rel="bookmark">
+        <time class="entry-date published" datetime="2016-09-08T23:42:00.000Z">
+          2016-09-09
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><a href="https://horizon.io" target="_blank" rel="external">Horizon</a> is a realtime JavaScript backend, which is similiar to Firebase. What interested to me is the powerful query language it provides. If you use Firebase before, you will know Firebase is cool as realtime database, but limited by the query ability. So I think it’s worth trying to use Horizon.</p>
+<p>I followed the step on the website:</p>
+<ol>
+<li>install RethinkDB by downloading the RethinkDB package</li>
+<li>install horizon by running <code>npm i -g horizon</code></li>
+<li>create an app by running <code>hz init test_app</code></li>
+<li>start the app by running <code>hz serve --dev</code></li>
+</ol>
+<p>Here’s the problem I got:<br><img src="/images/horizon-error.png" alt="horizon-error"></p>
+<p>The problem is because Horizon will start RethinkDB by default and in this case it doesn’t know how to start RethinkDB. Because RethinkDB installer doesn’t add the folder path to the environment variable. I tried to manually add this but it was not working. Then I checked the document of Horizon, and found out that Horizon can be configured to Connect to the server, instead of Start a server.</p>
+<p>So I changed the <code>config.toml</code> file inside <code>.hz</code> folder, uncommentted the following line. Then I manually start the RethinkDB server and run <code>hz serve --dev</code>. It worked!<br><img src="/images/config-toml.png" alt="config-toml"></p>
+<p>Hope it helps someone with the same issue when running Horizon.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+        <div class="article-meta pull-left">
+          
+  
+
+  <span class="post-categories">
+    <i class="icon-categories"></i>
+    <a href="/categories/Dev/">Dev</a>
+  </span>
+
+
+          
+  
+
+  <span class="post-tags">
+    <i class="icon-tags"></i>
+    <a href="/tags/Horizon/">Horizon</a>, <a href="/tags/RethinkDB/">RethinkDB</a>
+  </span>
+
+
+        </div>
+        
+    </footer>
+  </div>
+</article>
+
+  
+
+
+
+      </main>
+    </article>
+
+    <footer id="colophon" class="site-footer" role="contentinfo">
+<div class="divider"></div>
+  <div class="bio">
+    <div class="avatar">
+      <img src="/images/avatar.png" alt="Sam Zhao" class="avatar">
+    </div>
+    <div class="author">
+      <p>Written by <b><i>
+      Sam Zhao </i></b></p>
+      <p>Who lives and works in Brisbane QLD Australia, building useful things(hopefully).</p> 
+      <p>You can follow him on <a href="https://twitter.com/samzhaocn"> Twitter</a> or drop him a <a href="mailto:zhao.shengjun@gmail.com?Subject=Hi">email</a> and say "Hi".</p>   
+    </div>
+  </div>
+  <div>
+
+<div class="site-info">
+  Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a> &copy;
+  2016
+</div></footer>
+    
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-59912650-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+
+  </div>
+</div>
+</body>
+</html>
