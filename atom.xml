@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Learn, Make, Share, Live</title>
+  <subtitle>Learn new things, Make things better, Share things usefule, Live well</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://zhaoshengjun.github.io/"/>
+  <updated>2016-12-04T12:13:13.000Z</updated>
+  <id>https://zhaoshengjun.github.io/</id>
+  
+  <author>
+    <name>Sam Zhao</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Webpack Config CLI</title>
+    <link href="https://zhaoshengjun.github.io/2016/09/20/webpack-config-cli/"/>
+    <id>https://zhaoshengjun.github.io/2016/09/20/webpack-config-cli/</id>
+    <published>2016-09-20T11:42:00.000Z</published>
+    <updated>2016-12-04T12:13:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Recently I created my first open source NPM package called <code>create-webpack-config</code>. As you can guess, this is to create a <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a> configuration file (<code>webpack.config.js</code>), via CLI.</p>
+<a id="more"></a>
+<p>Basically it’s a command line tool which will generate an app structure for you to start using <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a> in no time.</p>
+<p>As to today, this module has been downloaded less than 300 times. It’s a very small number, but for me it’s quite big!</p>
+<p><img src="/images/npm-stats.png" alt="npm-stats"></p>
+<p>If you like to use <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a> , try this tool. If you like the tool, star it on <a href="https://github.com/zhaoshengjun/webpack-config" target="_blank" rel="external">github</a>. It really motivates me!</p>
+<h2 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h2><ol>
+<li>Install the package via <code>npm i -g create-webpack-config</code></li>
+<li>Create app by run <code>webpack-config init</code></li>
+</ol>
+<p>You now have a working directory to start! You can run <code>npm i</code> to install dependencies and then rurn <code>npm start</code> to start 🚀 !</p>
+<h2 id="Why"><a href="#Why" class="headerlink" title="Why?"></a>Why?</h2><p>Lots of people cannot figure out how to make <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a> work. But some people are also working on this to make it easier to use, with different approaches:</p>
+<ul>
+<li>boilerplate</li>
+<li>better documents(especially @TheLarkInn, @sokra and other team members)</li>
+<li>… …</li>
+</ul>
+<p>With the popularize of Create-React-App (CRA), I think it’s worth another shot by building a CLI tools to provide single command to get started with webpack.</p>
+<p>After all, webpack is a GREAT tool and we all love it 💕 💕 💕 !</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Recently I created my first open source NPM package called &lt;code&gt;create-webpack-config&lt;/code&gt;. As you can guess, this is to create a &lt;a href=&quot;https://webpack.github.io/&quot;&gt;webpack&lt;/a&gt; configuration file (&lt;code&gt;webpack.config.js&lt;/code&gt;), via CLI.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="Webpack" scheme="https://zhaoshengjun.github.io/tags/Webpack/"/>
+    
+      <category term="Webpack-config" scheme="https://zhaoshengjun.github.io/tags/Webpack-config/"/>
+    
+      <category term="npm package" scheme="https://zhaoshengjun.github.io/tags/npm-package/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Dynamic Require in Webpack</title>
+    <link href="https://zhaoshengjun.github.io/2016/09/09/dynamic-require-in-webpack/"/>
+    <id>https://zhaoshengjun.github.io/2016/09/09/dynamic-require-in-webpack/</id>
+    <published>2016-09-08T14:51:00.000Z</published>
+    <updated>2016-12-04T12:13:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Webpack is undoubtly powerful.</p>
+<a id="more"></a>
+<p>Here’s a trick I learned tody. When you have many pictures/icons which will be using by your app, you probably will name them according to a rule so that it’s easy to be picked up by the program.</p>
+<p>E.g. You have several teams, and each team has lots of pictures. You put them under separated folders. When you use them, you prefer to use them like this:</p>
+<p><code>./teams/${team}/${image}.svg</code></p>
+<p>This is much simpler than manually coding each pictures.</p>
+<p>When you use webpack, it seems a little difficult to do such thing. Because for webpack, each file is an asset. You refer them by using <code>require</code> statement. There seems to have to load them one by one. Oh my!</p>
+<p>Good news is webpack does support this! Here’s a screenshot of use the <code>require</code>with an expression. This is called <strong>dynamamic require</strong>.</p>
+<p><img src="/images/webpack-dynamic-require.png" alt="webpack-dynamic-require.png"></p>
+<p>The screenshot is using React, but you can apply this to other framework as well.</p>
+<p>p.s: this is <a href="https://github.com/facebookincubator/create-react-app/issues/585" target="_blank" rel="external">the source</a> where I learned this trick.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Webpack is undoubtly powerful.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="Webpack" scheme="https://zhaoshengjun.github.io/tags/Webpack/"/>
+    
+      <category term="Dynamic require" scheme="https://zhaoshengjun.github.io/tags/Dynamic-require/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Running Horizon on Windows</title>
+    <link href="https://zhaoshengjun.github.io/2016/09/09/run-horizon-on-windows/"/>
+    <id>https://zhaoshengjun.github.io/2016/09/09/run-horizon-on-windows/</id>
+    <published>2016-09-08T14:01:00.000Z</published>
+    <updated>2016-12-04T12:13:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://horizon.io/" target="_blank" rel="external">Horizon</a> is a realtime JavaScript backend, which is similiar to Firebase. What interested to me is the powerful query language it provides. If you use Firebase before, you will know Firebase is cool as realtime database, but limited by the query ability. So I think it’s worth trying to use Horizon.<br><a id="more"></a><br>I followed the step on the website:</p>
+<ol>
+<li>install RethinkDB by downloading the RethinkDB package</li>
+<li>install horizon by running <code>npm i -g horizon</code></li>
+<li>create an app by running <code>hz init test_app</code></li>
+<li>start the app by running <code>hz serve --dev</code></li>
+</ol>
+<p>Here’s the problem I got:<br><img src="/images/horizon-error.png" alt="horizon-error"></p>
+<p>The problem is because Horizon will start RethinkDB by default and in this case it doesn’t know how to start RethinkDB. Because RethinkDB installer doesn’t add the folder path to the environment variable. I tried to manually add this but it was not working. Then I checked the document of Horizon, and found out that Horizon can be configured to Connect to the server, instead of Start a server.</p>
+<p>So I changed the <code>config.toml</code> file inside <code>.hz</code> folder, uncommentted the following line. Then I manually start the RethinkDB server and run <code>hz serve --dev</code>. It worked!<br><img src="/images/config-toml.png" alt="config-toml"></p>
+<p>Hope it helps someone with the same issue when running Horizon.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://horizon.io/&quot;&gt;Horizon&lt;/a&gt; is a realtime JavaScript backend, which is similiar to Firebase. What interested to me is the powerful query language it provides. If you use Firebase before, you will know Firebase is cool as realtime database, but limited by the query ability. So I think it’s worth trying to use Horizon.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="Horizon" scheme="https://zhaoshengjun.github.io/tags/Horizon/"/>
+    
+      <category term="RethinkDB" scheme="https://zhaoshengjun.github.io/tags/RethinkDB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Difference/Connections between Component and Directives</title>
+    <link href="https://zhaoshengjun.github.io/2016/05/16/ng-directive/"/>
+    <id>https://zhaoshengjun.github.io/2016/05/16/ng-directive/</id>
+    <published>2016-05-16T12:42:00.000Z</published>
+    <updated>2016-12-04T12:13:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Angular 2 introduced <code>@Component</code> and also <code>@Directive</code> for meta data using TypeScript compatibility. Those who knows Angular 1 probably find these are familiar with <code>Directives</code> in Angular 1. But are they the same? Is there any difference? </p>
+<a id="more"></a>
+<p>I was confusing too, until I heard one simple yet elegant explanation:</p>
+<blockquote>
+<p>In Angular 1, <code>directives</code> has <strong>E</strong> type and <strong>A</strong> type. <code>@Component</code> in Angular 2 is like <strong>E</strong> type directive in Angular 1 while <code>@Directive</code> is like <strong>A</strong> type directive.</p>
+</blockquote>
+<p>Hope this will clear your head:)</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Angular 2 introduced &lt;code&gt;@Component&lt;/code&gt; and also &lt;code&gt;@Directive&lt;/code&gt; for meta data using TypeScript compatibility. Those who knows Angular 1 probably find these are familiar with &lt;code&gt;Directives&lt;/code&gt; in Angular 1. But are they the same? Is there any difference? &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="Angular 2" scheme="https://zhaoshengjun.github.io/tags/Angular-2/"/>
+    
+      <category term="Component" scheme="https://zhaoshengjun.github.io/tags/Component/"/>
+    
+      <category term="Directive" scheme="https://zhaoshengjun.github.io/tags/Directive/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Issue With Broccoli Running Without ADMIN Authorization</title>
+    <link href="https://zhaoshengjun.github.io/2016/05/09/ng-serve-error/"/>
+    <id>https://zhaoshengjun.github.io/2016/05/09/ng-serve-error/</id>
+    <published>2016-05-09T04:42:00.000Z</published>
+    <updated>2016-12-04T12:13:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I was running Angular 2 using company computer ( God bless no one from my company see this). And I was starting my app using <code>ng serve</code>, but it didn’t work. Instead it threw me an error regarding the Broccoli cannot merge trees.</p>
+<a id="more"></a>
+<p><img src="/images/ng-serve-error.png" alt="ng serve error"></p>
+<p>I did some digging but it didn’t go anywhere. Then I noticed that the error message saying “running as administrator increases performance significantly.” I just tried to start command line as admin and run the <code>ng serve</code> again. Wha-la, the error message disappeared. My app is back online running again.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I was running Angular 2 using company computer ( God bless no one from my company see this). And I was starting my app using &lt;code&gt;ng serve&lt;/code&gt;, but it didn’t work. Instead it threw me an error regarding the Broccoli cannot merge trees.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="Angular 2" scheme="https://zhaoshengjun.github.io/tags/Angular-2/"/>
+    
+      <category term="Broccoli" scheme="https://zhaoshengjun.github.io/tags/Broccoli/"/>
+    
+      <category term="Angular Cli" scheme="https://zhaoshengjun.github.io/tags/Angular-Cli/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fix Broccoli Error in Angular 2</title>
+    <link href="https://zhaoshengjun.github.io/2016/05/08/broccoli-error/"/>
+    <id>https://zhaoshengjun.github.io/2016/05/08/broccoli-error/</id>
+    <published>2016-05-08T11:42:00.000Z</published>
+    <updated>2016-12-04T12:13:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I used <code>angular-cli</code> create an Angular 2 app, use the default settings. Then I used <code>ng serve</code> command to start the server and made some changes. I must say the process is much better than before, which I has to change the <code>package.json</code> and set up a build tool, e.g. <code>gulp</code> or <code>webpack</code>, specially to enable live-reloading. Now <code>angular-cli</code> has all done that for me. Really sweet!</p>
+<a id="more"></a>
+<p>Then I left my desktop and stopped the build task. After I returned back and started to run <code>ng serve</code> again, I got an error.<br><img src="/images/cli-error.png" alt="broccoli-error"></p>
+<p>The fix for this error is quite simple: change the generated <code>spec.ts</code> file. The reason I think is Broccoli is run the test spec files before it compile the file and feed them to system.js so that Angular can load them onto the webpage. But I was not using a TDD approach so the test file were not match with the app file. So Broccoli was failling.</p>
+<p>It looks like Angular is promoting TDD approach! </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I used &lt;code&gt;angular-cli&lt;/code&gt; create an Angular 2 app, use the default settings. Then I used &lt;code&gt;ng serve&lt;/code&gt; command to start the server and made some changes. I must say the process is much better than before, which I has to change the &lt;code&gt;package.json&lt;/code&gt; and set up a build tool, e.g. &lt;code&gt;gulp&lt;/code&gt; or &lt;code&gt;webpack&lt;/code&gt;, specially to enable live-reloading. Now &lt;code&gt;angular-cli&lt;/code&gt; has all done that for me. Really sweet!&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="Angular 2" scheme="https://zhaoshengjun.github.io/tags/Angular-2/"/>
+    
+      <category term="Broccoli" scheme="https://zhaoshengjun.github.io/tags/Broccoli/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ng2 error - No provider for Http</title>
+    <link href="https://zhaoshengjun.github.io/2016/05/08/http-error/"/>
+    <id>https://zhaoshengjun.github.io/2016/05/08/http-error/</id>
+    <published>2016-05-08T01:06:00.000Z</published>
+    <updated>2016-12-04T12:13:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>This error is caused by, as you can guess, no Http provider in your ts/js file.</p>
+<a id="more"></a>
+<p>Here’s a screenshot of my error message.<br><img src="/images/http-error.png" alt="http provider error"></p>
+<p>How to fix this? By adding the http provider of course. It’s two lines of code.</p>
+<ol>
+<li><code>import { HTTP_PROVIDERS } from &#39;@angular/http&#39;;</code></li>
+<li>add <code>HTTP_PROVIDERS</code> to your provider list.</li>
+</ol>
+<p><img src="/images/fix-http.png" alt="use http provider"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This error is caused by, as you can guess, no Http provider in your ts/js file.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="Angular 2" scheme="https://zhaoshengjun.github.io/tags/Angular-2/"/>
+    
+      <category term="HTTP" scheme="https://zhaoshengjun.github.io/tags/HTTP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fix issue with Angular Material 2</title>
+    <link href="https://zhaoshengjun.github.io/2016/05/08/ng-material/"/>
+    <id>https://zhaoshengjun.github.io/2016/05/08/ng-material/</id>
+    <published>2016-05-07T14:51:00.000Z</published>
+    <updated>2016-12-04T12:13:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>If you have watched the demo of puppy love on ngconf 2016 and pumped to get hands on angualr material 2, trust me, you are <strong>not</strong> alone.</p>
+<p>If you try to use angualr cli to create an app and follow along the demo and find out it doesn’t work, trust me, you are <strong>not</strong> alone(at least I think so).</p>
+<p>If you have the same issue, here’s the how to solve it:</p>
+<a id="more"></a>
+<ul>
+<li>Change <code>angular-cli-build.js</code> in the root folder by adding a line of <code>&#39;@angular2-material/**/*.js&#39;</code></li>
+</ul>
+<p><img src="/images/cli-build.png" alt="angular-cli-build.js"></p>
+<ul>
+<li>Change <code>sytem-config.ts</code> in the <code>src</code> folder by adding material 2 specific settings (on the top).</li>
+</ul>
+<p><img src="/images/system-config.png" alt="system-config.ts"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;If you have watched the demo of puppy love on ngconf 2016 and pumped to get hands on angualr material 2, trust me, you are &lt;strong&gt;not&lt;/strong&gt; alone.&lt;/p&gt;
+&lt;p&gt;If you try to use angualr cli to create an app and follow along the demo and find out it doesn’t work, trust me, you are &lt;strong&gt;not&lt;/strong&gt; alone(at least I think so).&lt;/p&gt;
+&lt;p&gt;If you have the same issue, here’s the how to solve it:&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="Angular 2" scheme="https://zhaoshengjun.github.io/tags/Angular-2/"/>
+    
+      <category term="Angular Material 2" scheme="https://zhaoshengjun.github.io/tags/Angular-Material-2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Start to Blog</title>
+    <link href="https://zhaoshengjun.github.io/2016/05/04/start-to-blog/"/>
+    <id>https://zhaoshengjun.github.io/2016/05/04/start-to-blog/</id>
+    <published>2016-05-03T14:51:00.000Z</published>
+    <updated>2016-12-04T12:13:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>I haven’t writing blogs for years. Last time it landed me a <a href="http://item.jd.com/11355145.html" target="_blank" rel="external">book contract</a>. But as you know, there’s not too much things to share when you in an SAP world. </p>
+<p>Things changed, <strong>quickly</strong>.</p>
+<a id="more"></a>
+<p>Yesterday, I was playing with TypeScript + Webpack + React.js, you know, they are <strong>THE</strong> hottest in JavaScript world. I was frastrated, because the tech stack is so complicated since the JavaScript world are changing so rapidly. Even following along the training tutorials cannot ganrentee that you won’t hit the wall.</p>
+<p>Long story short, I hit the wall because the TS-Loader in Webpack keeps complianing I cannot use JSX (the file format is  actually TSX, but it doesn’t matter). I did the thing I did many times - I googled. And googled. It didn’t end well. There are not so many blogs talking about this, especially for TS-Loader.</p>
+<p>Suddenly, I realized that what TS-loader does is just <strong>transformation</strong> - from TSX to JS. Nothing more. Nothing fancy. Why I have to use this? I can use other tools as long as it does the job. In fact, the editor I use - VsCode - has built-support for TypeScript, because you know, they are all from Micrsoft. </p>
+<p>So I changed my <code>webpack.config.js</code>, removing the TS-Loader. Also I created a task to let VsCode transform TSX to JS. I have some perfectionlism issue, so I also use VsCode settigns to hide the generated <code>.js</code> and <code>.js.map</code> files. Here’s something tricky, in the settings, VsCode reminds me that I can only use a string to config but it’s totally OK to provide an array.</p>
+<p>I happily accept the solution. After that, suddenly I feel the strong urge to share this with the world. Because I know that out there so many people are struggling with starting with the current JS world but it’s to hard. The JS world is not user-friendly in some perspective. </p>
+<p>I simplely just want to make it <strong>less difficult</strong> for people who had the same suffer in today’s tech stack while what they want is just <strong>simply start</strong>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I haven’t writing blogs for years. Last time it landed me a &lt;a href=&quot;http://item.jd.com/11355145.html&quot;&gt;book contract&lt;/a&gt;. But as you know, there’s not too much things to share when you in an SAP world. &lt;/p&gt;
+&lt;p&gt;Things changed, &lt;strong&gt;quickly&lt;/strong&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="Webpack" scheme="https://zhaoshengjun.github.io/tags/Webpack/"/>
+    
+      <category term="TypeScript" scheme="https://zhaoshengjun.github.io/tags/TypeScript/"/>
+    
+      <category term="React" scheme="https://zhaoshengjun.github.io/tags/React/"/>
+    
+      <category term="VsCode" scheme="https://zhaoshengjun.github.io/tags/VsCode/"/>
+    
+  </entry>
+  
+</feed>
