@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://zhaoshengjun.github.io/2016/09/09/dynamic-require-in-webpack/</loc>
+    <loc>https://zhaoshengjun.github.io/2016/12/05/i18n-webpack-plugin/</loc>
     
-    <lastmod>2016-12-04T12:13:13.000Z</lastmod>
+    <lastmod>2016-12-05T14:02:54.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhaoshengjun.github.io/2016/12/05/webpack-simple-start/</loc>
+    
+    <lastmod>2016-12-05T10:32:55.000Z</lastmod>
     
   </url>
   
@@ -30,14 +37,7 @@
   </url>
   
   <url>
-    <loc>https://zhaoshengjun.github.io/2016/05/08/ng-material/</loc>
-    
-    <lastmod>2016-12-04T12:13:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhaoshengjun.github.io/2016/05/09/ng-serve-error/</loc>
+    <loc>https://zhaoshengjun.github.io/2016/09/09/dynamic-require-in-webpack/</loc>
     
     <lastmod>2016-12-04T12:13:13.000Z</lastmod>
     
@@ -45,6 +45,13 @@
   
   <url>
     <loc>https://zhaoshengjun.github.io/2016/09/09/run-horizon-on-windows/</loc>
+    
+    <lastmod>2016-12-04T12:13:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhaoshengjun.github.io/2016/05/08/ng-material/</loc>
     
     <lastmod>2016-12-04T12:13:13.000Z</lastmod>
     
@@ -59,6 +66,13 @@
   
   <url>
     <loc>https://zhaoshengjun.github.io/2016/09/20/webpack-config-cli/</loc>
+    
+    <lastmod>2016-12-04T12:13:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhaoshengjun.github.io/2016/05/09/ng-serve-error/</loc>
     
     <lastmod>2016-12-04T12:13:13.000Z</lastmod>
     

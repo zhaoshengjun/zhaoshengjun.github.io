@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhaoshengjun.github.io/"/>
-  <updated>2016-12-04T12:13:13.000Z</updated>
+  <updated>2016-12-05T14:02:54.000Z</updated>
   <id>https://zhaoshengjun.github.io/</id>
   
   <author>
@@ -14,6 +14,109 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Use I18n Plugin in Webpack</title>
+    <link href="https://zhaoshengjun.github.io/2016/12/05/i18n-webpack-plugin/"/>
+    <id>https://zhaoshengjun.github.io/2016/12/05/i18n-webpack-plugin/</id>
+    <published>2016-12-05T13:42:00.000Z</published>
+    <updated>2016-12-05T14:02:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>Webpack</code> has a plugin called <code>i18n-webpack-plugin</code>, which can be used to do <code>simple</code> translation.</p>
+<a id="more"></a>
+<div class="tip"><br>When I say <strong>simple</strong>, it is really <strong>simple</strong>.<br></div>
+
+<h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>This example is taken from the standard i18n example from <a href="https://github.com/webapck/webpack" target="_blank" rel="external">webpack repo</a>. You can check the whole source code from <a href="https://github.com/webpack/webpack/examples/i18n" target="_blank" rel="external">here</a>. </p>
+<p>In the entry file <code>example.js</code>, we use <code>console.log</code> function to output some strings:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(__(<span class="string">"Hello World"</span>));   <span class="comment">//this one has the translation</span></div><div class="line"><span class="built_in">console</span>.log(__(<span class="string">"Missing Text"</span>));  <span class="comment">//this one is missint the translation.</span></div></pre></td></tr></table></figure>
+<p>We define the translations in a <code>json</code> file based on the language. Here we have a <code>de.json</code>.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"Hello World"</span>: <span class="string">"Hallo Welt"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>What we want is two separated bundle files, each has its own correct strings.</p>
+<p>The configuation file we need to use is like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</div><div class="line"><span class="keyword">var</span> I18nPlugin = <span class="built_in">require</span>(<span class="string">"i18n-webpack-plugin"</span>);</div><div class="line"><span class="keyword">var</span> languages = &#123;</div><div class="line">	<span class="string">"en"</span>: <span class="literal">null</span>,</div><div class="line">	<span class="string">"de"</span>: <span class="built_in">require</span>(<span class="string">"./de.json"</span>)     <span class="comment">// 1</span></div><div class="line">&#125;;</div><div class="line"><span class="built_in">module</span>.exports = <span class="built_in">Object</span>.keys(languages).map(<span class="function"><span class="keyword">function</span>(<span class="params">language</span>) </span>&#123;        <span class="comment">//2</span></div><div class="line">	<span class="keyword">return</span> &#123;</div><div class="line">		<span class="attr">name</span>: language,       <span class="comment">//3</span></div><div class="line">		entry: <span class="string">"./example"</span>,   <span class="comment">//4</span></div><div class="line">		output: &#123;</div><div class="line">			<span class="attr">path</span>: path.join(__dirname, <span class="string">"js"</span>),</div><div class="line">			<span class="attr">filename</span>: language + <span class="string">".output.js"</span></div><div class="line">		&#125;,</div><div class="line">		<span class="attr">plugins</span>: [</div><div class="line">			<span class="keyword">new</span> I18nPlugin(</div><div class="line">				languages[language]                 <span class="comment">//5</span></div><div class="line">			)</div><div class="line">		]</div><div class="line">	&#125;;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>So let me explain it one by one.</p>
+<ol>
+<li>We need a mapping table( <code>languages</code> object) to tell <code>webpack</code> how to find the translation. For each language’s translation file, we use <code>require()</code> to load them;</li>
+<li>We use <code>map</code> function to generate multiple configuration files for each language in our mapping table. In this case, we have <code>en</code> and <code>de</code>. So we will generate 2 configuration files at the same time for <code>webpack</code> to process. This is called <code>multi-compiler</code> feature.</li>
+<li>We give each configuration file a name and it will be the same as the language name.</li>
+<li>The <code>entry</code> should be the same as we need to use in the normal configuration file. In our case, it should be the <code>example.js</code></li>
+<li>We need to specify the <code>I18nPlugin</code>  we use, along with the options. </li>
+</ol>
+<h2 id="Plugin-Options"><a href="#Plugin-Options" class="headerlink" title="Plugin Options"></a>Plugin Options</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">plugins: [</div><div class="line">  ...</div><div class="line">  new I18nPlugin(languageConfig, optionsObj)</div><div class="line">],</div></pre></td></tr></table></figure>
+<p>This plugin takes 2 arguments. </p>
+<ol>
+<li><code>languageConfig</code>: this is the translation file</li>
+<li><code>optionsObj</code>: which has 3 options:<ul>
+<li><code>optionsObj.functionName</code>: the default value is <code>__</code>, you can change it to other function name.</li>
+<li><code>optionsObj.failOnMissing</code>: the default value is <code>false</code>, which will show a warning message, if the mapping text cannot be found. If set to <code>true</code>, the message will be an error message.</li>
+<li><code>optionsObj.hideMessage</code>: the default value is <code>false</code>, which will show the warning/error message. If set to <code>true</code>, the message will be hide.</li>
+</ul>
+</li>
+</ol>
+<h2 id="Limitations"><a href="#Limitations" class="headerlink" title="Limitations"></a>Limitations</h2><p>There are lots of complex situations regarding translation, which can not be handled by this plugin.</p>
+<p>For example, the <a href="https://github.com/webpack/i18n-webpack-plugin/issues/1" target="_blank" rel="external">pluralization issue</a>.</p>
+<p>Those can certainly be improved in the future.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;Webpack&lt;/code&gt; has a plugin called &lt;code&gt;i18n-webpack-plugin&lt;/code&gt;, which can be used to do &lt;code&gt;simple&lt;/code&gt; translation.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="webpack" scheme="https://zhaoshengjun.github.io/tags/webpack/"/>
+    
+      <category term="plugin" scheme="https://zhaoshengjun.github.io/tags/plugin/"/>
+    
+      <category term="i18n" scheme="https://zhaoshengjun.github.io/tags/i18n/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Webpack 101 - Start</title>
+    <link href="https://zhaoshengjun.github.io/2016/12/05/webpack-simple-start/"/>
+    <id>https://zhaoshengjun.github.io/2016/12/05/webpack-simple-start/</id>
+    <published>2016-12-05T04:07:00.000Z</published>
+    <updated>2016-12-05T10:32:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Let’s start with the simplest example.</p>
+<h1 id="The-plan"><a href="#The-plan" class="headerlink" title="The plan"></a>The plan</h1><p>We’ll create 2 <code>js</code> files: <code>a.js</code> and <code>b.js</code>.  <code>b.js</code> is dependent on <code>a.js</code>. We’ll also use a html file to load <code>js</code> file.</p>
+<p>We certainly won’t include all the <code>js</code> files in the html. What we want is only the bundled file (in this case, one single file) will be included when we run the program. And this exactly what <code>webpack</code> does.</p>
+<h1 id="The-steps"><a href="#The-steps" class="headerlink" title="The steps"></a>The steps</h1><p>For this demo, we want to install <code>webpack</code> globally, so we can simplify the command we need to use.</p>
+<p>To install <code>webpack</code>, we run <code>yarn</code>  in terminal:</p>
+<p><code>yarn global add webpack@2.1.0-beta.27</code></p>
+<p>Then we create our files under a folder:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//a.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="string">"a"</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//b.js</span></div><div class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'./a'</span>);</div><div class="line"><span class="built_in">console</span>.log(a);</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>We don’t have <code>bundle.js</code> yet. That’s what we need to use <code>webpack</code> to generate for us.</p>
+<p><code>webpack</code> can take complex configurations in order to do complex things. But it can also be simple. All you need is to point the <strong>input</strong> and <strong>output</strong>. In <code>webpack</code> world, they are called <code>entry</code> and <code>output.filename</code>. </p>
+<p>Here’s the configuration file we need:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">	<span class="attr">entry</span>: <span class="string">'./b'</span>,</div><div class="line">	<span class="attr">output</span>: &#123;</div><div class="line">		<span class="attr">filename</span>:<span class="string">'bundle.js'</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>We now can run the command to generate the <code>bundle.js</code>.  Run the following command in terminal:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack</div></pre></td></tr></table></figure>
+<p>The output is something like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Hash: 46e06ba6184056d8ea0b</div><div class="line">Version: webpack 2.1.0-beta.27</div><div class="line">Time: 93ms</div><div class="line">    Asset     Size  Chunks             Chunk Names</div><div class="line">bundle.js  2.82 kB       0  [emitted]  main</div><div class="line">   [0] ./a.js 49 bytes &#123;0&#125; [built]</div><div class="line">   [1] ./b.js 69 bytes &#123;0&#125; [built]</div></pre></td></tr></table></figure>
+<p>If we open the <code>index.html</code> in chrome and see the console, we can find the output is correct.</p>
+<p>That’s probably the simplest example for <code>webpack</code> ​:)​</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Let’s start with the simplest example.&lt;/p&gt;
+&lt;h1 id=&quot;The-plan&quot;&gt;&lt;a href=&quot;#The-plan&quot; class=&quot;headerlink&quot; title=&quot;The plan&quot;&gt;&lt;/a&gt;The plan&lt;/h1&gt;&lt;p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="Webpack" scheme="https://zhaoshengjun.github.io/tags/Webpack/"/>
+    
+  </entry>
   
   <entry>
     <title>Webpack Config CLI</title>
