@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhaoshengjun.github.io/"/>
-  <updated>2016-12-06T13:45:58.000Z</updated>
+  <updated>2016-12-07T12:59:49.000Z</updated>
   <id>https://zhaoshengjun.github.io/</id>
   
   <author>
@@ -16,14 +16,72 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Code Splitting in Webpack - 2</title>
+    <link href="https://zhaoshengjun.github.io/2016/12/07/code-splitting-in-webpack-2/"/>
+    <id>https://zhaoshengjun.github.io/2016/12/07/code-splitting-in-webpack-2/</id>
+    <published>2016-12-07T12:58:00.000Z</published>
+    <updated>2016-12-07T12:59:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>In part 1, we take a look at example using <code>commonjs</code>.  In this part, we will look at how we do code splitting using ES6 syntax.</p>
+<a id="more"></a>
+<p><code>webpack</code> v1 doesn’t support ES6 syntax without a compiler like <code>babel</code>, so there’s no way to use code splitting in v1. But with <code>webpack</code> v2, you can write ES6 code without any compiler.  And <code>webpack</code> can not only understand it but provide more functionalities, such as tree-shaking.</p>
+<p>In this post, we will only focus on the code splitting.</p>
+<h2 id="The-example"><a href="#The-example" class="headerlink" title="The example"></a>The example</h2><p>The example is taken  from <code>webpack</code> <a href="https://github.com/webpack/webpack/tree/master/examples/code-splitting-harmony" target="_blank" rel="external">repo</a>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//example.js</span></div><div class="line"><span class="keyword">import</span> a <span class="keyword">from</span> <span class="string">"a"</span>;                                                     <span class="comment">//1</span></div><div class="line"></div><div class="line">System.import(<span class="string">"b"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">b</span>) </span>&#123;                                  <span class="comment">//2</span></div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"b loaded"</span>, b);</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadC</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> System.import(<span class="string">"c/"</span> + name)                                  <span class="comment">//3</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.all([loadC(<span class="string">"1"</span>), loadC(<span class="string">"2"</span>)]).then(<span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;             <span class="comment">//4</span></div><div class="line">	<span class="built_in">console</span>.log(<span class="string">"c/1 and c/2 loaded"</span>, arr);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>We’ll take a closer look at each step:</p>
+<ol>
+<li>load module <code>a</code> using ES6 syntax <code>import</code></li>
+<li>load module <code>b</code>, but here we define our splitting point  by using<code>System.import()</code></li>
+<li>create a function <code>loadC()</code>  using <code>System.import()</code> inside, which means whenever we use this function, we want <code>webpack</code> to generate a separate chunk for us.</li>
+<li>inside <code>Promise.all()</code>, we call function <code>loadC()</code> twice.</li>
+</ol>
+<p>So if we run the command <code>webpack</code> and use the following configuration:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">	<span class="attr">entry</span>: <span class="string">'./example.js'</span>,</div><div class="line">	<span class="attr">output</span>: &#123;</div><div class="line">		<span class="attr">path</span>:<span class="string">'./js/'</span>,</div><div class="line">		<span class="attr">filename</span>:<span class="string">'output.js'</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>we should get a result similar to the following output:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Hash: 0bdf6f6d99c782a6ec70</div><div class="line">Version: webpack 2.1.0-beta.25</div><div class="line">Time: 125ms</div><div class="line">      Asset      Size  Chunks             Chunk Names</div><div class="line">0.output.js  91 bytes       0  [emitted]</div><div class="line">1.output.js  91 bytes       1  [emitted]</div><div class="line">2.output.js  89 bytes       2  [emitted]</div><div class="line">  output.js   6.54 kB       3  [emitted]  main</div><div class="line">   [5] ./example.js 269 bytes &#123;3&#125; [built]</div><div class="line">    + 5 hidden modules</div></pre></td></tr></table></figure>
+<p>We now have 4 files generated by <code>webpack</code>:</p>
+<ul>
+<li><code>output.js</code> is the entry chunk, which will be loaded first. It contains <code>example.js</code> and <code>a</code>. </li>
+<li><code>0.output.js</code> includes <code>c2</code></li>
+<li><code>1.output.js</code> includes <code>c1</code></li>
+<li><code>2.output.js</code> includes <code>b</code></li>
+</ul>
+<blockquote>
+<p>The chunks’ content is kind of random, which means it may contains different module than I showed here. But that should not be a problem.</p>
+</blockquote>
+<p>Next time, we will see how to extract <code>css</code> file into a separate chunk.</p>
+<p>Stay tuned!</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;In part 1, we take a look at example using &lt;code&gt;commonjs&lt;/code&gt;.  In this part, we will look at how we do code splitting using ES6 syntax.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="Webpack" scheme="https://zhaoshengjun.github.io/tags/Webpack/"/>
+    
+      <category term="code splitting" scheme="https://zhaoshengjun.github.io/tags/code-splitting/"/>
+    
+      <category term="optimization" scheme="https://zhaoshengjun.github.io/tags/optimization/"/>
+    
+      <category term="ES6" scheme="https://zhaoshengjun.github.io/tags/ES6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Code Splitting in Webpack - 1</title>
     <link href="https://zhaoshengjun.github.io/2016/12/06/code-splitting-in-webpack-1/"/>
     <id>https://zhaoshengjun.github.io/2016/12/06/code-splitting-in-webpack-1/</id>
     <published>2016-12-06T13:32:00.000Z</published>
-    <updated>2016-12-06T13:45:58.000Z</updated>
+    <updated>2016-12-07T12:58:39.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="The-Problem"><a href="#The-Problem" class="headerlink" title="The Problem"></a>The Problem</h2><p>We all know that deploy a gigantic <code>bundle.js</code> with our app is not a good option.  Because the first page should be loaded as fast as possible. Otherwise the user will leave the app.  We, developer, should consider to use any possible options to reduce the initial loading time.</p>
 <p>Luckily, <code>webpack</code> got you covered!</p>
+<a id="more"></a>
 <h2 id="The-Solution"><a href="#The-Solution" class="headerlink" title="The Solution"></a>The Solution</h2><p>The solution <code>webpack</code> used is called <code>code splitting</code>. It’s splitting the code into different parts (<code>webpack</code> ‘s term is called <code>chunk</code>). So the individual page will only need to load the parts it needs. If some parts are already loaded, it will only load the missing part, which is much quicker.</p>
 <p>The technique <code>webpack</code> uses is to splitting the code when it meets the splitting point. What’s a splitting point? It varies based on the module system you are using:</p>
 <ul>
@@ -31,7 +89,7 @@
 <li>for <code>AMD</code>, it’s <code>require(dependencies, callback)</code></li>
 <li>for <code>SystemJS</code>, it’s <code>System.import(dependencies)</code> </li>
 </ul>
-<h2 id="The-Example"><a href="#The-Example" class="headerlink" title="The Example"></a>The Example</h2><p>Let’s take a look at the<code>code-splitting</code>  example from <code>webpack</code> <a href="">repo</a>.</p>
+<h2 id="The-Example"><a href="#The-Example" class="headerlink" title="The Example"></a>The Example</h2><p>Let’s take a look at the<code>code-splitting</code>  example from <code>webpack</code> <a href="https://github.com/webpack/webpack/tree/master/examples/code-splitting" target="_blank" rel="external">repo</a>.</p>
 <p>Inside <code>node_modules</code> folder, we have 4 files, each one represents a module like we used in everyday development. Outside the <code>node_modules</code> folder, we have a <code>example.js</code>:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//example.js</span></div><div class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">"a"</span>);                                   <span class="comment">//1</span></div><div class="line"><span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">"b"</span>);                                   <span class="comment">//2</span></div><div class="line"><span class="built_in">require</span>.ensure([<span class="string">"c"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;               <span class="comment">//3</span></div><div class="line">    <span class="built_in">require</span>(<span class="string">"b"</span>).xyz();                                 <span class="comment">//4</span></div><div class="line">    <span class="keyword">var</span> d = <span class="built_in">require</span>(<span class="string">"d"</span>);                               <span class="comment">//5</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <ol>
@@ -64,7 +122,8 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;The-Problem&quot;&gt;&lt;a href=&quot;#The-Problem&quot; class=&quot;headerlink&quot; title=&quot;The Problem&quot;&gt;&lt;/a&gt;The Problem&lt;/h2&gt;&lt;p&gt;We all know that deploy a gigantic
+      &lt;h2 id=&quot;The-Problem&quot;&gt;&lt;a href=&quot;#The-Problem&quot; class=&quot;headerlink&quot; title=&quot;The Problem&quot;&gt;&lt;/a&gt;The Problem&lt;/h2&gt;&lt;p&gt;We all know that deploy a gigantic &lt;code&gt;bundle.js&lt;/code&gt; with our app is not a good option.  Because the first page should be loaded as fast as possible. Otherwise the user will leave the app.  We, developer, should consider to use any possible options to reduce the initial loading time.&lt;/p&gt;
+&lt;p&gt;Luckily, &lt;code&gt;webpack&lt;/code&gt; got you covered!&lt;/p&gt;
     
     </summary>
     
@@ -144,9 +203,10 @@
     <link href="https://zhaoshengjun.github.io/2016/12/05/webpack-simple-start/"/>
     <id>https://zhaoshengjun.github.io/2016/12/05/webpack-simple-start/</id>
     <published>2016-12-05T04:07:00.000Z</published>
-    <updated>2016-12-05T10:32:55.000Z</updated>
+    <updated>2016-12-07T13:02:07.000Z</updated>
     
     <content type="html"><![CDATA[<p>Let’s start with the simplest example.</p>
+<a id="more"></a>
 <h1 id="The-plan"><a href="#The-plan" class="headerlink" title="The plan"></a>The plan</h1><p>We’ll create 2 <code>js</code> files: <code>a.js</code> and <code>b.js</code>.  <code>b.js</code> is dependent on <code>a.js</code>. We’ll also use a html file to load <code>js</code> file.</p>
 <p>We certainly won’t include all the <code>js</code> files in the html. What we want is only the bundled file (in this case, one single file) will be included when we run the program. And this exactly what <code>webpack</code> does.</p>
 <h1 id="The-steps"><a href="#The-steps" class="headerlink" title="The steps"></a>The steps</h1><p>For this demo, we want to install <code>webpack</code> globally, so we can simplify the command we need to use.</p>
@@ -171,7 +231,6 @@
     <summary type="html">
     
       &lt;p&gt;Let’s start with the simplest example.&lt;/p&gt;
-&lt;h1 id=&quot;The-plan&quot;&gt;&lt;a href=&quot;#The-plan&quot; class=&quot;headerlink&quot; title=&quot;The plan&quot;&gt;&lt;/a&gt;The plan&lt;/h1&gt;&lt;p&gt;
     
     </summary>
     
