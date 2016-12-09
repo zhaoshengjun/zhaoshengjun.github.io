@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhaoshengjun.github.io/2016/12/09/code-splitting-in-webpack-4/</loc>
+    
+    <lastmod>2016-12-09T12:58:52.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhaoshengjun.github.io/2016/12/07/code-splitting-in-webpack-2/</loc>
+    
+    <lastmod>2016-12-09T12:58:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhaoshengjun.github.io/2016/12/06/code-splitting-in-webpack-1/</loc>
+    
+    <lastmod>2016-12-09T12:58:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhaoshengjun.github.io/2016/12/08/code-splitting-in-webpack-3/</loc>
     
-    <lastmod>2016-12-08T13:29:00.000Z</lastmod>
+    <lastmod>2016-12-09T12:58:37.000Z</lastmod>
     
   </url>
   
@@ -16,30 +37,9 @@
   </url>
   
   <url>
-    <loc>https://zhaoshengjun.github.io/2016/12/07/code-splitting-in-webpack-2/</loc>
-    
-    <lastmod>2016-12-07T12:59:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhaoshengjun.github.io/2016/12/06/code-splitting-in-webpack-1/</loc>
-    
-    <lastmod>2016-12-07T12:58:39.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://zhaoshengjun.github.io/2016/12/05/i18n-webpack-plugin/</loc>
     
     <lastmod>2016-12-05T14:02:54.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhaoshengjun.github.io/2016/05/16/ng-directive/</loc>
-    
-    <lastmod>2016-12-04T12:13:13.000Z</lastmod>
     
   </url>
   
@@ -87,6 +87,13 @@
   
   <url>
     <loc>https://zhaoshengjun.github.io/2016/05/08/http-error/</loc>
+    
+    <lastmod>2016-12-04T12:13:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhaoshengjun.github.io/2016/05/16/ng-directive/</loc>
     
     <lastmod>2016-12-04T12:13:13.000Z</lastmod>
     

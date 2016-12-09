@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zhaoshengjun.github.io/"/>
-  <updated>2016-12-08T13:29:00.000Z</updated>
+  <updated>2016-12-09T12:58:52.000Z</updated>
   <id>https://zhaoshengjun.github.io/</id>
   
   <author>
@@ -16,11 +16,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Code Splitting in Webpack - 3 CSS Bundle</title>
+    <title>Code Splitting in Webpack 4 - Bundle Loader</title>
+    <link href="https://zhaoshengjun.github.io/2016/12/09/code-splitting-in-webpack-4/"/>
+    <id>https://zhaoshengjun.github.io/2016/12/09/code-splitting-in-webpack-4/</id>
+    <published>2016-12-09T12:58:00.000Z</published>
+    <updated>2016-12-09T12:58:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Today I will show you how to do code splitting use <code>bundle-loader</code>.</p>
+<a id="more"></a>
+<p>What <code>bundle-loader</code> does is to make each <code>require(&#39;bundle-loader!xxx.js&#39;)</code> to a Promise. Then it will load the module asynchronously from another chunk.</p>
+<p>Let’s look at an example.</p>
+<h2 id="The-example"><a href="#The-example" class="headerlink" title="The example"></a>The example</h2><p>We have a entry point <code>example.js</code> which will use <code>bundle-loader</code> to load <code>file.js</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//example.js</span></div><div class="line"><span class="built_in">require</span>(<span class="string">"bundle-loader!./file.js"</span>)(<span class="function"><span class="keyword">function</span>(<span class="params">fileJsExports</span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(fileJsExports);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//file.js</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="string">"It works"</span>;</div></pre></td></tr></table></figure>
+<p>The configuration we use is:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//webpack.config.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>:<span class="string">'./example.js'</span>,</div><div class="line">  <span class="attr">output</span>:&#123;</div><div class="line">    <span class="attr">path</span>:<span class="string">"./js"</span>,</div><div class="line">    <span class="attr">filename</span>:<span class="string">'output.js'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>After we run the command <code>webpack</code>, we will get the following result:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Hash: e6bccc1fa42cc8c2b757</div><div class="line">Version: webpack 2.1.0-beta.27</div><div class="line">Time: 135ms</div><div class="line">      Asset       Size  Chunks             Chunk Names</div><div class="line">0.output.js  106 bytes       0  [emitted]</div><div class="line">  output.js    5.87 kB       1  [emitted]  main</div><div class="line">   [1] ./example.js 97 bytes &#123;1&#125; [built]</div><div class="line">   [2] ./file.js 28 bytes &#123;0&#125; [built]</div><div class="line">    + 1 hidden modules</div></pre></td></tr></table></figure>
+<p>Because we use <code>bundle-loader</code> to load <code>file.js</code>, <code>webpack</code> has generated a separate chunk to contains <code>file.js</code>. We can verify it by check inside those 2 chunk files:</p>
+<ul>
+<li><code>output.js</code> is the entry chunk. It contains the <code>example.js</code> </li>
+<li><code>0.output.js</code> contains <code>file.js</code></li>
+</ul>
+<p>That’s all for today! Thanks!</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Today I will show you how to do code splitting use &lt;code&gt;bundle-loader&lt;/code&gt;.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Dev" scheme="https://zhaoshengjun.github.io/categories/Dev/"/>
+    
+    
+      <category term="code splitting" scheme="https://zhaoshengjun.github.io/tags/code-splitting/"/>
+    
+      <category term="Webpack" scheme="https://zhaoshengjun.github.io/tags/Webpack/"/>
+    
+      <category term="optimization" scheme="https://zhaoshengjun.github.io/tags/optimization/"/>
+    
+      <category term="bundle loader" scheme="https://zhaoshengjun.github.io/tags/bundle-loader/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Code Splitting in Webpack 3 - CSS Bundle</title>
     <link href="https://zhaoshengjun.github.io/2016/12/08/code-splitting-in-webpack-3/"/>
     <id>https://zhaoshengjun.github.io/2016/12/08/code-splitting-in-webpack-3/</id>
     <published>2016-12-08T13:28:00.000Z</published>
-    <updated>2016-12-08T13:29:00.000Z</updated>
+    <updated>2016-12-09T12:58:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>As I promised in part 2, this time we will take a look at how to separate <code>css</code> into a single file.</p>
 <a id="more"></a>
@@ -73,11 +117,11 @@
   </entry>
   
   <entry>
-    <title>Code Splitting in Webpack - 2</title>
+    <title>Code Splitting in Webpack 2 - ES6</title>
     <link href="https://zhaoshengjun.github.io/2016/12/07/code-splitting-in-webpack-2/"/>
     <id>https://zhaoshengjun.github.io/2016/12/07/code-splitting-in-webpack-2/</id>
     <published>2016-12-07T12:58:00.000Z</published>
-    <updated>2016-12-07T12:59:49.000Z</updated>
+    <updated>2016-12-09T12:58:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>In part 1, we take a look at example using <code>commonjs</code>.  In this part, we will look at how we do code splitting using ES6 syntax.</p>
 <a id="more"></a>
@@ -130,11 +174,11 @@
   </entry>
   
   <entry>
-    <title>Code Splitting in Webpack - 1</title>
+    <title>Code Splitting in Webpack 1 - Basics</title>
     <link href="https://zhaoshengjun.github.io/2016/12/06/code-splitting-in-webpack-1/"/>
     <id>https://zhaoshengjun.github.io/2016/12/06/code-splitting-in-webpack-1/</id>
     <published>2016-12-06T13:32:00.000Z</published>
-    <updated>2016-12-07T12:58:39.000Z</updated>
+    <updated>2016-12-09T12:58:37.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="The-Problem"><a href="#The-Problem" class="headerlink" title="The Problem"></a>The Problem</h2><p>We all know that deploy a gigantic <code>bundle.js</code> with our app is not a good option.  Because the first page should be loaded as fast as possible. Otherwise the user will leave the app.  We, developer, should consider to use any possible options to reduce the initial loading time.</p>
 <p>Luckily, <code>webpack</code> got you covered!</p>
